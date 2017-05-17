@@ -16,7 +16,7 @@
 	<name>biblioteca: JAR Module</name>
 
 	<properties>
-		<plugin.version.maven-jar-plugin>2.6</plugin.version.maven-jar-plugin>
+		<plugin.version.maven-jar-plugin>3.0.2</plugin.version.maven-jar-plugin>
 	</properties>
 	
 	<build>

@@ -16,7 +16,7 @@
 	<name>biblioteca: WAR Module</name>
 
 	<properties>
-		<plugin.version.maven-war-plugin>2.6</plugin.version.maven-war-plugin>
+		<plugin.version.maven-war-plugin>3.1.0</plugin.version.maven-war-plugin>
 	</properties>
 
 	<dependencies>
