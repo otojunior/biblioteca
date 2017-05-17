@@ -26,6 +26,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<dependency.version.junit>4.12</dependency.version.junit>
 		<dependency.version.easymock>3.4</dependency.version.easymock>
 		<dependency.version.powermock>1.6.6</dependency.version.powermock>
@@ -36,13 +37,26 @@
 		<dependency.version.commons-collections4>4.1</dependency.version.commons-collections4>
 		<dependency.version.commons-codec>1.10</dependency.version.commons-codec>
 		<dependency.version.javaee-api>7.0</dependency.version.javaee-api>
+		<dependency.version.glassfish>4.1.1</dependency.version.glassfish>
+		<dependency.version.jboss-javaee>1.0.3.Final</dependency.version.jboss-javaee>
+		<dependency.version.hibernate>5.2.0.Final</dependency.version.hibernate>
+		
 		<plugin.version.java>1.8</plugin.version.java>
 		<plugin.version.maven-compiler-plugin>3.6.1</plugin.version.maven-compiler-plugin>
 		<plugin.version.maven-release-plugin>2.5.3</plugin.version.maven-release-plugin>
+		<plugin.version.maven-jar-plugin>3.0.2</plugin.version.maven-jar-plugin>
 		<plugin.version.maven-source-plugin>3.0.1</plugin.version.maven-source-plugin>
 		<plugin.version.maven-javadoc-plugin>2.10.4</plugin.version.maven-javadoc-plugin>
 		<plugin.version.maven-surefire-plugin>2.20</plugin.version.maven-surefire-plugin>
 		<plugin.version.buildnumber-maven-plugin>1.4</plugin.version.buildnumber-maven-plugin>
+		<plugin.version.maven-ejb-plugin>2.5.1</plugin.version.maven-ejb-plugin>
+		<plugin.version.maven-war-plugin>3.1.0</plugin.version.maven-war-plugin>
+		<plugin.version.maven-ear-plugin>2.10.1</plugin.version.maven-ear-plugin>
+		<plugin.version.maven-embedded-glassfish-plugin>4.1.1</plugin.version.maven-embedded-glassfish-plugin>
+		<plugin.version.jboss-as-maven-plugin>7.8.Final</plugin.version.jboss-as-maven-plugin>
+		
+		<config.version.ejbversion>3.2</config.version.ejbversion>
+		<config.maven-embedded-glassfish-plugin.port>8080</config.maven-embedded-glassfish-plugin.port>
 		
 		<!--
 			Remember to upate de tag below in template.xhtml when update jquery dependency.  

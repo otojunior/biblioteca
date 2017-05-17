@@ -15,10 +15,6 @@
 
 	<name>biblioteca: EAR Module</name>
 
-	<properties>
-		<plugin.version.maven-ear-plugin>2.10.1</plugin.version.maven-ear-plugin>
-	</properties>
-
 	<build>
 		<finalName>biblioteca</finalName>
 		<plugins>
@@ -49,19 +45,19 @@
 		<dependency>
 			<groupId>org.otojunior</groupId>
 			<artifactId>biblioteca</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>org.otojunior</groupId>
 			<artifactId>biblioteca-ejb</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
 		<dependency>
 			<groupId>org.otojunior</groupId>
 			<artifactId>biblioteca-jar</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>jar</type>
 		</dependency>
 	</dependencies>
@@ -72,12 +68,6 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			
-			<properties>
-				<plugin.version.maven-embedded-glassfish-plugin>4.1.1</plugin.version.maven-embedded-glassfish-plugin>
-				<dependency.version.h2>1.4.194</dependency.version.h2>
-				<config.maven-embedded-glassfish-plugin.port>8080</config.maven-embedded-glassfish-plugin.port>
-			</properties>
 			
 			<build>
 				<plugins>
@@ -123,11 +113,6 @@
 		
 		<profile>
 			<id>jboss-profile</id>
-			
-			<properties>
-				<plugin.version.jboss-as-maven-plugin>7.8.Final</plugin.version.jboss-as-maven-plugin>
-			</properties>
-			
 			<build>
 				<plugins>
 					<plugin>

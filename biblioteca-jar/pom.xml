@@ -14,10 +14,6 @@
 	<packaging>jar</packaging>
 
 	<name>biblioteca: JAR Module</name>
-
-	<properties>
-		<plugin.version.maven-jar-plugin>3.0.2</plugin.version.maven-jar-plugin>
-	</properties>
 	
 	<build>
 		<plugins>
@@ -41,5 +37,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
