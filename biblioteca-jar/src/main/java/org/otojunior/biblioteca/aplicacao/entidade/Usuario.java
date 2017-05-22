@@ -33,7 +33,7 @@ public class Usuario extends EntidadeBase {
 	private LocalDate dataNascimento;
 
 	@NotNull
-	@Column(nullable=false)
+	@Column(nullable=false, length=1)
 	private Genero genero;
 	
 	@Lob

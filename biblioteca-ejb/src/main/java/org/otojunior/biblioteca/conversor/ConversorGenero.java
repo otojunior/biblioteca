@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.aplicacao.entidade.conversor;
+package org.otojunior.biblioteca.conversor;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -30,7 +30,7 @@
 		<dependency.version.junit>4.12</dependency.version.junit>
 		<dependency.version.easymock>3.4</dependency.version.easymock>
 		<dependency.version.powermock>1.6.6</dependency.version.powermock>
-		<dependency.version.h2>1.4.194</dependency.version.h2>
+		<dependency.version.h2>1.3.173</dependency.version.h2>
 		<dependency.version.logback>1.2.3</dependency.version.logback>
 		<dependency.version.slf4j>1.7.25</dependency.version.slf4j>
 		<dependency.version.commons-lang3>3.5</dependency.version.commons-lang3>

@@ -42,18 +42,18 @@ public class InitService {
 	
 	@PostConstruct
 	public void init() {
-		LOG.info(">>>>>>>>>>>>>>> Serviço de Inicialização...");
-		LOG.info(">>>>>>>>>>>>>>> " + (entityManager != null));
-		
 		Usuario u1 = new Usuario();
 		u1.setNome("teste");
 		u1.setDataNascimento(LocalDate.of(1980, 12, 25));
 		u1.setGenero(Genero.MASCULINO);
 		
-		entityManager.persist(u1);
+		Usuario u2 = new Usuario();
+		u2.setNome("teste2");
+		u2.setDataNascimento(LocalDate.of(1982, 01, 01));
+		u2.setGenero(Genero.FEMININO);
 		
-		TypedQuery<Integer> q = entityManager.createQuery("select u.genero from Usuario u", Integer.class);
-		int r = q.getFirstResult();
-		LOG.info(String.valueOf(r).toString());
+		entityManager.persist(u1);
+		entityManager.persist(u2);
+		LOG.info("");
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.aplicacao.entidade.conversor;
+package org.otojunior.biblioteca.conversor;
 
 import java.sql.Date;
 import java.time.LocalDate;

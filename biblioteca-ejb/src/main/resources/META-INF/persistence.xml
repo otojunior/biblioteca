@@ -12,7 +12,7 @@
 			Glassfish: java:app/jdbc/<nome do datasource>
 			JBoss: jdbc/<nome do datasource>
 		-->
-		<jta-data-source>jdbc/biblioteca-ds2</jta-data-source>
+		<jta-data-source>jdbc/biblioteca-ds</jta-data-source>
 		<properties>
 			<!--
 				<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
