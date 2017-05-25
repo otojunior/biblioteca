@@ -5,14 +5,16 @@
 	version="2.0">
 
 	<persistence-unit name="default" transaction-type="JTA">
-		<class>org.otojunior.biblioteca.aplicacao.entidade.Livro</class>
-		<class>org.otojunior.biblioteca.aplicacao.entidade.Usuario</class>
 		
 		<!-- 
 			Glassfish: java:app/jdbc/<nome do datasource>
 			JBoss: jdbc/<nome do datasource>
 		-->
 		<jta-data-source>jdbc/biblioteca-ds</jta-data-source>
+		
+		<class>org.otojunior.biblioteca.entidade.usuario.Usuario</class>
+		<class>org.otojunior.biblioteca.entidade.livro.Livro</class>
+		
 		<properties>
 			<!--
 				<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
