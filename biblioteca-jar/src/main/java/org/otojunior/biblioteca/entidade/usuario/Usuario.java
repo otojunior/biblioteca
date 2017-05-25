@@ -1,17 +1,19 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.aplicacao.entidade;
+package org.otojunior.biblioteca.entidade.usuario;
 
 import java.sql.Blob;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.otojunior.biblioteca.base.entidade.EntidadeBase;
+import org.otojunior.biblioteca.entidade.EntidadeBase;
 
 /**
  * @author 01456231650
@@ -39,6 +41,11 @@ public class Usuario extends EntidadeBase {
 	@Lob
 	@Column(nullable=true)
 	private Blob foto;
+	
+	@NotNull
+	@Valid
+	@Embedded
+	private Endereco endereco;
 
 	/**
 	 * @return the nome
@@ -94,5 +101,28 @@ public class Usuario extends EntidadeBase {
 	 */
 	public void setFoto(Blob foto) {
 		this.foto = foto;
+	}
+
+	/**
+	 * @return the endereco
+	 */
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	/**
+	 * @param endereco the endereco to set
+	 */
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	/**
+	 * Campo calculado.
+	 * @return
+	 */
+	public Integer getIdade() {
+		LocalDate minusYears = LocalDate.now().minusYears(dataNascimento.getYear());
+		return minusYears.getYear();
 	}
 }

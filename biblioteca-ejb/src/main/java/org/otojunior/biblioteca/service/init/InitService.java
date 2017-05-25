@@ -1,22 +1,18 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.service;
+package org.otojunior.biblioteca.service.init;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
-import org.otojunior.biblioteca.aplicacao.entidade.Genero;
-import org.otojunior.biblioteca.aplicacao.entidade.Livro;
-import org.otojunior.biblioteca.aplicacao.entidade.Usuario;
+import org.otojunior.biblioteca.entidade.usuario.Genero;
+import org.otojunior.biblioteca.entidade.usuario.Usuario;
+import org.otojunior.biblioteca.service.usuario.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +26,8 @@ import org.slf4j.LoggerFactory;
 public class InitService {
 	private static Logger LOG = LoggerFactory.getLogger(InitService.class);
 	
-	@PersistenceContext
-	private EntityManager entityManager;
+	@EJB
+	private UsuarioService service;
 	
 	/**
 	 * 
@@ -52,8 +48,9 @@ public class InitService {
 		u2.setDataNascimento(LocalDate.of(1982, 01, 01));
 		u2.setGenero(Genero.FEMININO);
 		
-		entityManager.persist(u1);
-		entityManager.persist(u2);
+		service.persistir(u1);
+		service.persistir(u2);
+		
 		LOG.info("");
 	}
 }

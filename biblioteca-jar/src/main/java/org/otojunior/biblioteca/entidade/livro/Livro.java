@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.aplicacao.entidade;
+package org.otojunior.biblioteca.entidade.livro;
 
 import java.sql.Blob;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.otojunior.biblioteca.base.entidade.EntidadeBase;
+import org.otojunior.biblioteca.entidade.EntidadeBase;
 
 /**
  * @author 01456231650

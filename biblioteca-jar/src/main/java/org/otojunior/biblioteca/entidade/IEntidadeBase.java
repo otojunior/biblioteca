@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.base.entidade;
+package org.otojunior.biblioteca.entidade;
 
 import java.io.Serializable;
 

@@ -6,7 +6,7 @@ package org.otojunior.biblioteca.conversor;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import org.otojunior.biblioteca.aplicacao.entidade.Genero;
+import org.otojunior.biblioteca.entidade.usuario.Genero;
 
 /**
  * @author 01456231650

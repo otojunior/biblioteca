@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.base.entidade;
+package org.otojunior.biblioteca.entidade;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
