@@ -4,12 +4,9 @@
 package org.otojunior.biblioteca.dao.livro;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.util.Collections;
+import static org.junit.Assert.assertNotNull;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +37,13 @@ public class LivroDaoTest extends DaoBaseTest {
 	 */
 	@Test
 	public void testPesquisarPorId() {
-		fail("Not yet implemented");
+		getEntityManager().getTransaction().begin();
+		dao.persistir(LivroFabrica.criar());
+		dao.persistir(LivroFabrica.criar());
+		dao.persistir(LivroFabrica.criar());
+		getEntityManager().getTransaction().commit();
+		
+		assertNotNull(dao.pesquisarPorId(1L));
 	}
 
 	/**
@@ -69,7 +72,20 @@ public class LivroDaoTest extends DaoBaseTest {
 	 */
 	@Test
 	public void testPesquisarPorEditora() {
-		assertEquals(Collections.emptyList(), dao.pesquisarPorEditora("teste"));
+		/*
+		 * Inserção de 10 livros, sendo que 4 deles terá a editora com nome de "teste"
+		 */
+		getEntityManager().getTransaction().begin();
+		for (int i = 0; i < 10; i++) {
+			Livro livro = LivroFabrica.criar();
+			if (i % 3 == 0) {
+				livro.setEditora("teste");
+			}
+			dao.persistir(livro);
+		}
+		getEntityManager().getTransaction().commit();
+		
+		assertEquals(4, dao.pesquisarPorEditora("teste").size());
 	}
 
 }

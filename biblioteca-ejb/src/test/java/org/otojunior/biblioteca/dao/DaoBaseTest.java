@@ -35,7 +35,6 @@ public class DaoBaseTest {
 	public static void tearDownAfterClass() throws Exception {
 		if (entityManagerFactory != null) {
 			entityManagerFactory.close();
-			entityManagerFactory = null;
 		}
 	}
 
@@ -56,7 +55,6 @@ public class DaoBaseTest {
 	public void tearDown() throws Exception {
 		if (entityManager != null) {
 			entityManager.close();
-			entityManager = null;
 		}
 	}
 	
