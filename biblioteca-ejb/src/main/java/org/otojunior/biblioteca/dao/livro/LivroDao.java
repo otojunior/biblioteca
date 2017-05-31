@@ -3,13 +3,17 @@
  */
 package org.otojunior.biblioteca.dao.livro;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.otojunior.biblioteca.dao.DaoBase;
+import org.otojunior.biblioteca.dao.util.ConstrutorWhere;
 import org.otojunior.biblioteca.entidade.livro.Livro;
 
 /**
@@ -28,25 +32,19 @@ public class LivroDao extends DaoBase<Livro> {
 	
 	/**
 	 * 
-	 * @param nome
-	 * @return
-	 */
-	public List<Livro> pesquisarPorNome(String nome) {
-		EntityManager em = getEntityManager();
-		TypedQuery<Livro> query = em.createNamedQuery(Livro.NQ_PESQUISA_POR_NOME, Livro.class);
-		query.setParameter("_nome", nome);
-		return query.getResultList();
-	}
-	
-	/**
-	 * 
 	 * @param editora
 	 * @return
 	 */
-	public List<Livro> pesquisarPorEditora(String editora) {
-		EntityManager em = getEntityManager();
-		TypedQuery<Livro> query = em.createNamedQuery(Livro.NQ_PESQUISA_POR_EDITORA, Livro.class);
-		query.setParameter("_editora", editora);
-		return query.getResultList();
+	public List<Livro> pesquisar(String nome, String editora) {
+		StringBuilder jpql = new StringBuilder("select lv from Livro lv");
+		
+		
+		List<Pair<String, Object>> filtros = Arrays.asList(
+			Pair.of("lv.nome = :_nome", nome),
+			Pair.of("lv.editora = :_editora", editora));
+		
+		jpql = ConstrutorWhere.criar(jpql, filtros);
+		
+		return null;
 	}
 }

@@ -10,8 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -23,16 +21,9 @@ import org.otojunior.biblioteca.entidade.EntidadeBase;
  *
  */
 @Entity
-@NamedQueries({
-	@NamedQuery(name=Livro.NQ_PESQUISA_POR_NOME, query="select lv from Livro lv where lv.nome = :_nome"),
-	@NamedQuery(name=Livro.NQ_PESQUISA_POR_EDITORA, query="select lv from Livro lv where lv.editora = :_editora")
-})
 public class Livro extends EntidadeBase {
 	private static final long serialVersionUID = -1584199678720540839L;
 	
-	public static final String NQ_PESQUISA_POR_NOME = "livro.pesquisaPorNome";
-	public static final String NQ_PESQUISA_POR_EDITORA = "livro.pesquisaPorEditora";
-
 	/**
 	 * 
 	 */
