@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.otojunior.biblioteca.entidade.usuario.mock;
+package org.otojunior.biblioteca.entidade.mock;
 
 
 

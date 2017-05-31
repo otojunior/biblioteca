@@ -59,19 +59,19 @@ public class Livro extends EntidadeBase {
 	 * 
 	 */
 	@NotNull
-	@Min(10)
-	@Max(10)
+	@Min(1000000000L)
+	@Max(10000000000L)
 	@Column(nullable=false)
-	private Integer isbn10;
+	private Long isbn10;
 	
 	/**
 	 * 
 	 */
 	@NotNull
-	@Min(13)
-	@Max(13)
+	@Min(1000000000000L)
+	@Max(10000000000000L)
 	@Column(nullable=false)
-	private Integer isbn13;
+	private Long isbn13;
 
 	/**
 	 * 
@@ -139,28 +139,28 @@ public class Livro extends EntidadeBase {
 	/**
 	 * @return the isbn10
 	 */
-	public Integer getIsbn10() {
+	public Long getIsbn10() {
 		return isbn10;
 	}
 
 	/**
 	 * @param isbn10 the isbn10 to set
 	 */
-	public void setIsbn10(Integer isbn10) {
+	public void setIsbn10(Long isbn10) {
 		this.isbn10 = isbn10;
 	}
 
 	/**
 	 * @return the isbn13
 	 */
-	public Integer getIsbn13() {
+	public Long getIsbn13() {
 		return isbn13;
 	}
 
 	/**
 	 * @param isbn13 the isbn13 to set
 	 */
-	public void setIsbn13(Integer isbn13) {
+	public void setIsbn13(Long isbn13) {
 		this.isbn13 = isbn13;
 	}
 

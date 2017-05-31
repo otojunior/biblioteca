@@ -8,8 +8,11 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
+import org.otojunior.biblioteca.entidade.livro.Livro;
+import org.otojunior.biblioteca.entidade.mock.LivroFabrica;
+import org.otojunior.biblioteca.entidade.mock.UsuarioFabrica;
 import org.otojunior.biblioteca.entidade.usuario.Usuario;
-import org.otojunior.biblioteca.entidade.usuario.mock.UsuarioFabrica;
+import org.otojunior.biblioteca.service.livro.LivroService;
 import org.otojunior.biblioteca.service.usuario.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +27,8 @@ import org.slf4j.LoggerFactory;
 public class InitService {
 	private static Logger LOG = LoggerFactory.getLogger(InitService.class);
 	
-	@EJB
-	private UsuarioService service;
+	@EJB private UsuarioService usuarioService;
+	@EJB private LivroService livroService;
 	
 	/**
 	 * 
@@ -34,12 +37,21 @@ public class InitService {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 		for (int i = 0; i < 100; i++) {
 			Usuario u = UsuarioFabrica.criar();
 			LOG.info(u.toString());
-			service.persistir(u);
+			usuarioService.persistir(u);
+		}
+		
+		for (int i = 0; i < 50; i++) {
+			Livro lv = LivroFabrica.criar();
+			LOG.info(lv.toString());
+			livroService.persistir(lv);
 		}
 	}
 }
