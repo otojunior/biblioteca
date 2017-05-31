@@ -4,6 +4,7 @@
 package org.otojunior.biblioteca.conversor;
 
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 import org.otojunior.biblioteca.entidade.usuario.UF;
 
@@ -11,6 +12,7 @@ import org.otojunior.biblioteca.entidade.usuario.UF;
  * @author 01456231650
  *
  */
+@Converter(autoApply=true)
 public class ConversorUF implements AttributeConverter<UF, String> {
 	/**
 	 * {@inheritDoc}
