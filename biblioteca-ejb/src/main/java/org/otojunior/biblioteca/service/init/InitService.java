@@ -3,8 +3,6 @@
  */
 package org.otojunior.biblioteca.service.init;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -44,8 +42,8 @@ public class InitService {
 	 */
 	@PostConstruct
 	public void init() {
-		final int N_USUARIOS = 1;
-		final int N_LIVROS = 1;
+		final int N_USUARIOS = 50;
+		final int N_LIVROS = 50;
 		
 		for (int i = 0; i < N_USUARIOS; i++) {
 			Usuario u = UsuarioFabrica.criar();
@@ -58,12 +56,5 @@ public class InitService {
 			LOG.info(lv.toString());
 			livroService.persistir(lv);
 		}
-		
-		// Pesquisa
-		List<Livro> lst1 = livroService.pesquisarPorNomeOuEditora("teste", "");
-		List<Livro> lst2 = livroService.pesquisarPorNomeOuEditora("", "teste");
-		
-		LOG.info(String.valueOf(lst1.size()));
-		LOG.info(String.valueOf(lst2.size()));
 	}
 }

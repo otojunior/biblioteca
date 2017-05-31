@@ -64,7 +64,7 @@ public class LivroDaoTest extends DaoBaseTest {
 		}
 		getEntityManager().getTransaction().commit();
 		
-		assertEquals(5, dao.pesquisarPorNome("teste").size());
+		assertEquals(5, dao.pesquisar("teste", "").size());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class LivroDaoTest extends DaoBaseTest {
 		}
 		getEntityManager().getTransaction().commit();
 		
-		assertEquals(4, dao.pesquisarPorEditora("teste").size());
+		assertEquals(4, dao.pesquisar("","teste").size());
 	}
 
 }

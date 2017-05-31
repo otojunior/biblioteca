@@ -36,7 +36,7 @@ public class ConstrutorWhere {
 				}
 			}
 			if (algumValido) {
-				jpql.delete(jpql.length()-1-" and ".length(), jpql.length()-1);
+				jpql.delete(jpql.length()-" and ".length(), jpql.length());
 			}
 		}
 		return jpql;
