@@ -87,5 +87,48 @@ public class LivroDaoTest extends DaoBaseTest {
 		
 		assertEquals(4, dao.pesquisar("","teste").size());
 	}
+	
+	/**
+	 * Test method for {@link org.otojunior.biblioteca.dao.livro.LivroDao#pesquisarPorEditora(java.lang.String)}.
+	 */
+	@Test
+	public void testPesquisarPorNomeEditora() {
+		/*
+		 * Inserção de 10 livros, sendo que 2 deles terá o nome e a editora preenchidos
+		 */
+		getEntityManager().getTransaction().begin();
+		for (int i = 0; i < 10; i++) {
+			Livro livro = LivroFabrica.criar();
+			if (i % 5 == 0) {
+				livro.setNome("nome_teste");
+				livro.setEditora("nome_editora");
+			}
+			dao.persistir(livro);
+		}
+		getEntityManager().getTransaction().commit();
+		
+		assertEquals(2, dao.pesquisar("nome_teste","nome_editora").size());
+	}
 
+	/**
+	 * Test method for {@link org.otojunior.biblioteca.dao.livro.LivroDao#pesquisarPorEditora(java.lang.String)}.
+	 */
+	@Test
+	public void testPesquisarVazio() {
+		/*
+		 * Inserção de 10 livros, sendo que 2 deles terá o nome e a editora preenchidos
+		 */
+		getEntityManager().getTransaction().begin();
+		for (int i = 0; i < 10; i++) {
+			Livro livro = LivroFabrica.criar();
+			if (i % 5 == 0) {
+				livro.setNome("nome_teste");
+				livro.setEditora("nome_editora");
+			}
+			dao.persistir(livro);
+		}
+		getEntityManager().getTransaction().commit();
+		
+		assertEquals(10, dao.pesquisar("","").size());
+	}
 }

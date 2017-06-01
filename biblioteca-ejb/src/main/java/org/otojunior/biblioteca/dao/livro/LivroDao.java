@@ -3,17 +3,13 @@
  */
 package org.otojunior.biblioteca.dao.livro;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
+import org.apache.commons.lang3.StringUtils;
 import org.otojunior.biblioteca.dao.DaoBase;
-import org.otojunior.biblioteca.dao.util.ConstrutorWhere;
 import org.otojunior.biblioteca.entidade.livro.Livro;
 
 /**
@@ -36,15 +32,41 @@ public class LivroDao extends DaoBase<Livro> {
 	 * @return
 	 */
 	public List<Livro> pesquisar(String nome, String editora) {
-		StringBuilder jpql = new StringBuilder("select lv from Livro lv");
+		TypedQuery<Livro> query = getEntityManager().createQuery(
+			jpql(nome, editora), 
+			Livro.class);
 		
+		if (StringUtils.isNotBlank(nome)) {
+			query.setParameter("_nome", nome);
+		}
+		if (StringUtils.isNotBlank(editora)) {
+			query.setParameter("_editora", editora);
+		}
 		
-		List<Pair<String, Object>> filtros = Arrays.asList(
-			Pair.of("lv.nome = :_nome", nome),
-			Pair.of("lv.editora = :_editora", editora));
+		return query.getResultList();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String jpql(String nome, String editora) {
+		String jpql = "select lv from Livro lv where";
 		
-		jpql = ConstrutorWhere.criar(jpql, filtros);
+		boolean algumaClausula = false;
+		if (StringUtils.isNotBlank(nome)) {
+			jpql += " and lv.nome = :_nome";
+			algumaClausula = true;
+		}
+		if (StringUtils.isNotBlank(editora)) {
+			jpql += " and lv.editora = :_editora";
+			algumaClausula = true;
+		}
 		
-		return null;
+		jpql = (algumaClausula) ? 
+			jpql.replace(" where and", " where") : 
+			jpql.replace(" where", "");
+		
+		return jpql;
 	}
 }
