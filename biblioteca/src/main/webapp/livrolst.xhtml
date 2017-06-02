@@ -5,12 +5,23 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 	
+	
+	
 	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="uiPageTitle">Listagem de Livros</ui:define>
 		<ui:define name="uiPanelTitle">Listagem de Livros</ui:define>
 		<ui:define name="uiPanelDescription"/>
 		<ui:define name="uiContent">
+			<script>
+				function teste() {
+					var ischecked = $(document).find(":checkbox")["0"].checked
+					if (ischecked == true) PF('dataTableChecks').selectAllRows()
+					else PF('dataTableChecks').unselectAllRows()
+				}
+			</script>
+			
 			<h:form>
+			
 				<p>Nome: <p:inputText value="#{livroView.nome}"/></p>
 				<p>Editora: <p:inputText value="#{livroView.editora}"/></p>
 				<p><p:commandButton action="#{livroView.pesquisar}" value="Pesquisar" update="idPainelLivroListagem"/></p>
@@ -19,8 +30,21 @@
 					<p:outputPanel id="idPainelLivroListagem"> 
 						<p:dataTable id="idDataTableLivroListagem" 
 								var="i" value="#{livroView.livros}" selection="#{livroView.selecionados}" 
-								rowKey="#{i.id}" style="margin-bottom:0" rowSelectMode="checkbox" paginator="true" rows="5">
+								rowKey="#{i.id}" style="margin-bottom:0" rowSelectMode="checkbox" paginator="true" rows="5"
+								widgetVar="dataTableChecks">
+							
+							<!-- 	
+							<f:facet name="header">
+								<p:commandButton value="Selecionar Todos" onclick="PF('dataTableChecks').selectAllRows()" />
+								<p:commandButton value="Limpar Todos" onclick="PF('dataTableChecks').unselectAllRows()" />
+							</f:facet>
+					         -->
+					        
+							<p:ajax event="toggleSelect" oncomplete="teste()"/>
+					        
 					        <p:column selectionMode="multiple" style="width:16px;text-align:center" />
+					        
+					        
 					        <p:column headerText="Id">
 					            <h:outputText value="#{i.id}" />
 					        </p:column>
