@@ -42,8 +42,8 @@ public class InitService {
 	 */
 	@PostConstruct
 	public void init() {
-		final int N_USUARIOS = 10;
-		final int N_LIVROS = 10;
+		final int N_USUARIOS = 48;
+		final int N_LIVROS = 48;
 		
 		for (int i = 0; i < N_USUARIOS; i++) {
 			Usuario u = UsuarioFabrica.criar();
