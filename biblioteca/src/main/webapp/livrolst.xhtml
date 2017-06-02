@@ -19,8 +19,8 @@
 					<p:outputPanel id="idPainelLivroListagem"> 
 						<p:dataTable id="idDataTableLivroListagem" 
 								var="i" value="#{livroView.livros}" selection="#{livroView.selecionados}" 
-								rowKey="#{i.id}" style="margin-bottom:0" rowSelectMode="checkbox">
-					        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+								rowKey="#{i.id}" style="margin-bottom:0" rowSelectMode="checkbox" paginator="true" rows="5">
+					        <p:column selectionMode="multiple" style="width:16px;text-align:center" />
 					        <p:column headerText="Id">
 					            <h:outputText value="#{i.id}" />
 					        </p:column>
