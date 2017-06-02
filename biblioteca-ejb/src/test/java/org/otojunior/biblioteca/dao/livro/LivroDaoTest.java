@@ -6,6 +6,8 @@ package org.otojunior.biblioteca.dao.livro;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.junit.Before;
@@ -30,6 +32,16 @@ public class LivroDaoTest extends DaoBaseTest {
 		super.setUp();
 		dao = new LivroDao();
 		Whitebox.setInternalState(dao, EntityManager.class, getEntityManager());
+		getEntityManager().getTransaction().begin();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void tearDown() throws Exception {
+		getEntityManager().getTransaction().rollback();
+		super.tearDown();
 	}
 	
 	/**
@@ -37,13 +49,13 @@ public class LivroDaoTest extends DaoBaseTest {
 	 */
 	@Test
 	public void testPesquisarPorId() {
-		getEntityManager().getTransaction().begin();
 		dao.persistir(LivroFabrica.criar());
 		dao.persistir(LivroFabrica.criar());
 		dao.persistir(LivroFabrica.criar());
-		getEntityManager().getTransaction().commit();
-		
-		assertNotNull(dao.pesquisarPorId(1L));
+		List<Livro> lvs = dao.pesquisar(null, null);
+		assertNotNull(dao.pesquisarPorId(lvs.get(0).getId()));
+		assertNotNull(dao.pesquisarPorId(lvs.get(1).getId()));
+		assertNotNull(dao.pesquisarPorId(lvs.get(2).getId()));
 	}
 
 	/**
@@ -54,7 +66,6 @@ public class LivroDaoTest extends DaoBaseTest {
 		/*
 		 * Inserção de 10 livros, sendo que 5 deles terá o nome de "teste"
 		 */
-		getEntityManager().getTransaction().begin();
 		for (int i = 0; i < 10; i++) {
 			Livro livro = LivroFabrica.criar();
 			if (i % 2 == 0) {
@@ -62,8 +73,6 @@ public class LivroDaoTest extends DaoBaseTest {
 			}
 			dao.persistir(livro);
 		}
-		getEntityManager().getTransaction().commit();
-		
 		assertEquals(5, dao.pesquisar("teste", "").size());
 	}
 
@@ -75,7 +84,6 @@ public class LivroDaoTest extends DaoBaseTest {
 		/*
 		 * Inserção de 10 livros, sendo que 4 deles terá a editora com nome de "teste"
 		 */
-		getEntityManager().getTransaction().begin();
 		for (int i = 0; i < 10; i++) {
 			Livro livro = LivroFabrica.criar();
 			if (i % 3 == 0) {
@@ -83,8 +91,6 @@ public class LivroDaoTest extends DaoBaseTest {
 			}
 			dao.persistir(livro);
 		}
-		getEntityManager().getTransaction().commit();
-		
 		assertEquals(4, dao.pesquisar("","teste").size());
 	}
 	
@@ -96,7 +102,6 @@ public class LivroDaoTest extends DaoBaseTest {
 		/*
 		 * Inserção de 10 livros, sendo que 2 deles terá o nome e a editora preenchidos
 		 */
-		getEntityManager().getTransaction().begin();
 		for (int i = 0; i < 10; i++) {
 			Livro livro = LivroFabrica.criar();
 			if (i % 5 == 0) {
@@ -105,8 +110,6 @@ public class LivroDaoTest extends DaoBaseTest {
 			}
 			dao.persistir(livro);
 		}
-		getEntityManager().getTransaction().commit();
-		
 		assertEquals(2, dao.pesquisar("nome_teste","nome_editora").size());
 	}
 
@@ -118,7 +121,6 @@ public class LivroDaoTest extends DaoBaseTest {
 		/*
 		 * Inserção de 10 livros, sendo que 2 deles terá o nome e a editora preenchidos
 		 */
-		getEntityManager().getTransaction().begin();
 		for (int i = 0; i < 10; i++) {
 			Livro livro = LivroFabrica.criar();
 			if (i % 5 == 0) {
@@ -127,8 +129,6 @@ public class LivroDaoTest extends DaoBaseTest {
 			}
 			dao.persistir(livro);
 		}
-		getEntityManager().getTransaction().commit();
-		
 		assertEquals(10, dao.pesquisar("","").size());
 	}
 }

@@ -13,33 +13,35 @@
 			<h:form>
 				<p>Nome: <p:inputText value="#{livroView.nome}"/></p>
 				<p>Editora: <p:inputText value="#{livroView.editora}"/></p>
-				<p><h:commandButton action="#{livroView.pesquisar}" value="Pesquisar"/></p>
+				<p><p:commandButton action="#{livroView.pesquisar}" value="Pesquisar" update="idPainelLivroListagem"/></p>
 			
 				<p>
-					<p:dataTable id="checkboxDT" 
-							var="i" value="#{livroView.livros}"  selection="#{livroView.selecionados}" 
-							rowKey="#{i.id}" style="margin-bottom:0">
-				        <f:facet name="header">
-				            Checkbox
-				        </f:facet>
-				        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-				        <p:column headerText="Id">
-				            <h:outputText value="#{i.id}" />
-				        </p:column>
-				        <p:column headerText="Nome">
-				            <h:outputText value="#{i.nome}" />
-				        </p:column>
-				        <p:column headerText="Editora">
-				            <h:outputText value="#{i.editora}" />
-				        </p:column>
-				        <p:column headerText="Páginas">
-				            <h:outputText value="#{i.paginas}" />
-				        </p:column>
-				        <f:facet name="footer">
-				            <h:commandButton process="checkboxDT" icon="ui-icon-search" 
-				            	value="Processar" action="#{livroView.processar}"/>
-				        </f:facet>
-				    </p:dataTable>
+					<p:outputPanel id="idPainelLivroListagem">
+						<p:dataTable id="idDataTableLivroListagem" 
+								var="i" value="#{livroView.livros}"  selection="#{livroView.selecionados}" 
+								rowKey="#{i.id}" style="margin-bottom:0" rendered="#{not empty livroView.livros}">
+					        <f:facet name="header">
+					            Checkbox
+					        </f:facet>
+					        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+					        <p:column headerText="Id">
+					            <h:outputText value="#{i.id}" />
+					        </p:column>
+					        <p:column headerText="Nome">
+					            <h:outputText value="#{i.nome}" />
+					        </p:column>
+					        <p:column headerText="Editora">
+					            <h:outputText value="#{i.editora}" />
+					        </p:column>
+					        <p:column headerText="Páginas">
+					            <h:outputText value="#{i.paginas}" />
+					        </p:column>
+					        <f:facet name="footer">
+					            <p:commandButton process="idDataTableLivroListagem" icon="ui-icon-search" 
+					            	value="Processar" action="#{livroView.processar}" update="idDataTableLivroListagem"/>
+					        </f:facet>
+					    </p:dataTable>
+				    </p:outputPanel> 
 				</p>
 			</h:form>
 		</ui:define>
