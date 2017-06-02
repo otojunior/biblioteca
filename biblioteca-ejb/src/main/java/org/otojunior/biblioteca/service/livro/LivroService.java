@@ -3,6 +3,8 @@
  */
 package org.otojunior.biblioteca.service.livro;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -28,5 +30,14 @@ public class LivroService extends ServiceBase {
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void persistir(Livro livro) {
 		dao.persistir(livro);
+	}
+	
+	/**
+	 * 
+	 * @param editora
+	 * @return
+	 */
+	public List<Livro> pesquisar(String nome, String editora) {
+		return dao.pesquisar(nome, editora);
 	}
 }

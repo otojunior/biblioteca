@@ -50,7 +50,7 @@ public class LivroDao extends DaoBase<Livro> {
 	 * 
 	 * @return
 	 */
-	public String jpql(String nome, String editora) {
+	private String jpql(String nome, String editora) {
 		String jpql = "select lv from Livro lv where";
 		
 		boolean algumaClausula = false;
