@@ -36,9 +36,10 @@
 									rowKey="#{i.id}" rowSelectMode="checkbox"
 									paginator="true" rows="5" paginatorPosition="bottom"
 									style="margin-bottom:0" 
-									widgetVar="dataTableChecks">
+									widgetVar="dataTableChecks"
+									>
 							
-							<p:ajax event="toggleSelect" oncomplete="controlarCheckboxes()"/>
+							<p:ajax event="toggleSelect" oncomplete="controlarCheckboxes()" listener="#{livroView.onToggleSelect}"/>
 					        
 					        <p:column selectionMode="multiple" style="width:16px;text-align:center" />
 					        <p:column headerText="Id">

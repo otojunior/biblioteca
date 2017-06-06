@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import org.otojunior.biblioteca.entidade.livro.Livro;
 import org.otojunior.biblioteca.service.livro.LivroService;
+import org.primefaces.event.ToggleSelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,6 +66,10 @@ public class LivroView {
 		selecionados.add(livro16);
 		
 		return null;
+	}
+	
+	public void onToggleSelect(ToggleSelectEvent event) {
+		LOG.info("evento disparado");
 	}
 
 	/**
