@@ -7,14 +7,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.otojunior.biblioteca.entidade.livro.Livro;
 import org.otojunior.biblioteca.service.livro.LivroService;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleSelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +38,9 @@ public class LivroView {
 	private List<Livro> selecionados;
 	private boolean todosSelecionados = false;
 	
+	private LivroLazyDataModel livroLazyDataModel;
+	
+	
 	@Inject
 	private LivroService service;
 	
@@ -44,8 +49,7 @@ public class LivroView {
 	 * @return
 	 */
 	public String pesquisar() {
-		livros = service.pesquisar(nome, editora);
-		LOG.info("livros.size: " + livros.size());
+		livroLazyDataModel = new LivroLazyDataModel(service, nome, editora);
 		return null;
 	}
 	
@@ -64,8 +68,8 @@ public class LivroView {
 		 */
 		Livro livroA = new Livro();
 		Livro livroB = new Livro();
-		livroA.setId(livros.get(0).getId());
-		livroB.setId(livros.get(1).getId());
+		livroA.setId(livros.get(2).getId());
+		livroB.setId(livros.get(3).getId());
 		selecionados.add(livroA);
 		selecionados.add(livroB);
 		
@@ -86,6 +90,16 @@ public class LivroView {
 		}
 	}
 
+	public void onRowSelectCheckbox(SelectEvent event) {
+		LOG.info("Source.class: " + event.getSource().getClass().getName());
+		LOG.info("Source.toString: " + event.getSource().toString());
+	}
+	
+	public void rowUnselectCheckbox(UnselectEvent event) {
+		LOG.info("Source.class: " + event.getSource().getClass().getName());
+		LOG.info("Source.toString: " + event.getSource().toString());
+	}
+	
 	/**
 	 * @return the nome
 	 */
@@ -140,5 +154,12 @@ public class LivroView {
 	 */
 	public void setSelecionados(List<Livro> selecionados) {
 		this.selecionados = selecionados;
+	}
+
+	/**
+	 * @return the livroLazyDataModel
+	 */
+	public LivroLazyDataModel getLivroLazyDataModel() {
+		return livroLazyDataModel;
 	}
 }
