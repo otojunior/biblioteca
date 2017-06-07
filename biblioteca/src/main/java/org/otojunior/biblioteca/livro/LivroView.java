@@ -3,12 +3,15 @@
  */
 package org.otojunior.biblioteca.livro;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.otojunior.biblioteca.entidade.livro.Livro;
 import org.otojunior.biblioteca.service.livro.LivroService;
 import org.primefaces.event.ToggleSelectEvent;
@@ -31,6 +34,7 @@ public class LivroView {
 	// Listagem
 	private List<Livro> livros;
 	private List<Livro> selecionados;
+	private boolean todosSelecionados = false;
 	
 	@Inject
 	private LivroService service;
@@ -56,20 +60,30 @@ public class LivroView {
 		
 		/*
 		 * Simulando alguma regra de negócio que por um acaso
-		 * marca os objetos (livros) 55 e 56.
+		 * marca os dois primeiros registros
 		 */
-		Livro livro15 = new Livro();
-		Livro livro16 = new Livro();
-		livro15.setId(15L);
-		livro16.setId(16L);
-		selecionados.add(livro15);
-		selecionados.add(livro16);
+		Livro livroA = new Livro();
+		Livro livroB = new Livro();
+		livroA.setId(livros.get(0).getId());
+		livroB.setId(livros.get(1).getId());
+		selecionados.add(livroA);
+		selecionados.add(livroB);
 		
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	public void onToggleSelect(ToggleSelectEvent event) {
-		LOG.info("evento disparado");
+		if (todosSelecionados) {
+			selecionados = Collections.emptyList();
+			todosSelecionados = false;
+		} else {
+			selecionados = new ArrayList<>(livros);
+			todosSelecionados = true;
+		}
 	}
 
 	/**

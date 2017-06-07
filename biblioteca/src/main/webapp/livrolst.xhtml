@@ -21,9 +21,13 @@
 						PF('dataTableChecks').unselectAllRows();
 					}
 				}
+
+				function doNothing() {
+					return 0;
+				}
 			</script>
 			
-			<h:form>
+			<h:form id="idForm">
 			
 				<p>Nome: <p:inputText value="#{livroView.nome}"/></p>
 				<p>Editora: <p:inputText value="#{livroView.editora}"/></p>
@@ -39,9 +43,9 @@
 									widgetVar="dataTableChecks"
 									>
 							
-							<p:ajax event="toggleSelect" oncomplete="controlarCheckboxes()" listener="#{livroView.onToggleSelect}"/>
+							<p:ajax event="toggleSelect" listener="#{livroView.onToggleSelect}" update="idDataTableLivroListagem"/>
 					        
-					        <p:column selectionMode="multiple" style="width:16px;text-align:center" />
+					        <p:column id="idCheckboxAll" selectionMode="multiple" style="width:16px;text-align:center" />
 					        <p:column headerText="Id">
 					            <h:outputText value="#{i.id}" />
 					        </p:column>
