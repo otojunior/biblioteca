@@ -5,8 +5,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 	
-	
-	
 	<ui:composition template="/templates/template.xhtml">
 		<ui:define name="uiPageTitle">Listagem de Livros</ui:define>
 		<ui:define name="uiPanelTitle">Listagem de Livros</ui:define>
@@ -28,28 +26,36 @@
 			</script>
 			
 			<h:form id="idForm">
-			
 				<p>Nome: <p:inputText value="#{livroView.nome}"/></p>
 				<p>Editora: <p:inputText value="#{livroView.editora}"/></p>
 				<p><p:commandButton action="#{livroView.pesquisar}" value="Pesquisar" update="idDataTableLivroListagem"/></p>
 			
 				<p>
 					<p:dataTable id="idDataTableLivroListagem" 
+								emptyMessage="Nenhum registro encontrado"
 								lazy="true"
 								paginator="true" 
 								paginatorPosition="bottom"
-								rowKey="#{i.id}" 
+								rowKey="#{item.id}" 
 								rows="10" 
 								rowSelectMode="checkbox"
 								selection="#{livroView.selecionados}" 
 								style="margin-bottom:0" 
 								widgetVar="dataTableChecks"
 								value="#{livroView.livroLazyDataModel}"	
-								var="i">
+								var="item">
 						
 						<f:facet name="header">
-							<p:commandButton value="Selecionar Todos" action="#{livroView.selecionarTodos}" update="idDataTableLivroListagem"/>
-							<p:commandButton value="Limpar Todos" action="#{livroView.limparTodos}" update="idDataTableLivroListagem"/>
+							<p:commandButton 
+								action="#{livroView.selecionarTodos}" 
+								disabled="#{(livroView.livroLazyDataModel.rowCount eq null) or (livroView.livroLazyDataModel.rowCount eq 0)}"
+								update="idDataTableLivroListagem"
+								value="Selecionar Todos"/>
+							<p:commandButton 
+								action="#{livroView.limparTodos}"
+								disabled="#{(livroView.livroLazyDataModel.rowCount eq null) or (livroView.livroLazyDataModel.rowCount eq 0)}"
+								value="Limpar Todos" 
+								update="idDataTableLivroListagem"/>
 						</f:facet>
 						
 						<!-- 
@@ -59,16 +65,16 @@
 				        
 				        <p:column id="idCheckboxAll" selectionMode="multiple" style="width:16px;text-align:center" />
 				        <p:column headerText="Id">
-				            <h:outputText value="#{i.id}" />
+				            <h:outputText value="#{item.id}" />
 				        </p:column>
 				        <p:column headerText="Nome">
-				            <h:outputText value="#{i.nome}" />
+				            <h:outputText value="#{item.nome}" />
 				        </p:column>
 				        <p:column headerText="Editora">
-				            <h:outputText value="#{i.editora}" />
+				            <h:outputText value="#{item.editora}" />
 				        </p:column>
 				        <p:column headerText="Páginas">
-				            <h:outputText value="#{i.paginas}" />
+				            <h:outputText value="#{item.paginas}" />
 				        </p:column>
 				        <f:facet name="footer">
 				            <p:commandButton process="idDataTableLivroListagem" icon="ui-icon-search" 
