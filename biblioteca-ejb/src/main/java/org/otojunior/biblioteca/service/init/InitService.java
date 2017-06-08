@@ -47,13 +47,13 @@ public class InitService {
 		
 		for (int i = 0; i < N_USUARIOS; i++) {
 			Usuario u = UsuarioFabrica.criar();
-			LOG.info(u.toString());
+			//LOG.info(u.toString());
 			usuarioService.persistir(u);
 		}
 		
 		for (int i = 0; i < N_LIVROS; i++) {
 			Livro lv = LivroFabrica.criar();
-			LOG.info(lv.toString());
+			//LOG.info(lv.toString());
 			livroService.persistir(lv);
 		}
 	}

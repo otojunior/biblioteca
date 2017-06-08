@@ -46,9 +46,9 @@ public class LivroLazyDataModel extends LazyDataModel<Livro> {
 	 */
 	@Override
 	public Livro getRowData(String rowKey) {
-		LOG.info(">>>>>>>>>>>>> getRowData");
 		Long id = Long.valueOf(rowKey);
-		return service.pesquisarPorId(id);
+		return new Livro(id);
+		//return service.pesquisarPorId(id);
 	}
 	
 	/**
@@ -56,7 +56,6 @@ public class LivroLazyDataModel extends LazyDataModel<Livro> {
 	 */
 	@Override
 	public Object getRowKey(Livro object) {
-		LOG.info(">>>>>>>>>>>>> getRowKey");
 		return object.getId();
 	}
 	
@@ -66,13 +65,6 @@ public class LivroLazyDataModel extends LazyDataModel<Livro> {
 	@Override
 	public List<Livro> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
-		LOG.info(">>>>>>>>>>>>> load");
-		LOG.info("first: " + first);
-		LOG.info("pageSize: " + pageSize);
-		LOG.info("sortField: " + sortField);
-		LOG.info("sortOrder: " + sortOrder);
-		LOG.info("filters" + filters.toString());
-		
 		List<Livro> resultado = service.pesquisar(nome, editora, first, pageSize);
 		return resultado;
 	}
