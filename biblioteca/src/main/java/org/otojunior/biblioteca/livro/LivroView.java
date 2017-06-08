@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 @ManagedBean
 @ViewScoped
 public class LivroView {
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(LivroView.class);
 	
 	// Pesquisa
@@ -34,7 +35,6 @@ public class LivroView {
 	//private boolean todosSelecionados = false;
 	
 	private LivroLazyDataModel livroLazyDataModel;
-	
 	
 	@Inject
 	private LivroService service;
@@ -53,21 +53,7 @@ public class LivroView {
 	 * @return
 	 */
 	public String processar() {
-		for (Livro selecionado : selecionados) {
-			LOG.info("Selecionado: " + selecionado.getId());
-		}
-		
-		/*
-		 * Simulando alguma regra de negócio que por um acaso
-		 * marca os dois primeiros registros
-		 */
-		Livro livroA = new Livro();
-		Livro livroB = new Livro();
-		livroA.setId(55L);
-		livroB.setId(56L);
-		selecionados.add(livroA);
-		selecionados.add(livroB);
-		
+		selecionados = service.selecionarImpares(selecionados);
 		return null;
 	}
 	

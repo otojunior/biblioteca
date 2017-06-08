@@ -10,6 +10,8 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.collections4.Predicate;
 import org.otojunior.biblioteca.dao.livro.LivroDao;
 import org.otojunior.biblioteca.entidade.livro.Livro;
 import org.otojunior.biblioteca.service.ServiceBase;
@@ -78,5 +80,19 @@ public class LivroService extends ServiceBase {
 	 */
 	public Livro pesquisarPorId(Long id) {
 		return dao.pesquisarPorId(id);
+	}
+
+	/**
+	 * Seleciona os registros cujo ID seja ímpar.
+	 * @param selecionados
+	 * @return
+	 */
+	public List<Livro> selecionarImpares(List<Livro> selecionados) {
+		return ListUtils.select(selecionados, new Predicate<Livro>() {
+			@Override
+			public boolean evaluate(Livro object) {
+				return object.getId().longValue() % 2 != 0;
+			}
+		});
 	}
 }

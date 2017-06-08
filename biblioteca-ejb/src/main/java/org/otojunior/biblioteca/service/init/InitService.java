@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 @Singleton
 @Startup
 public class InitService {
+	@SuppressWarnings("unused")
 	private static Logger LOG = LoggerFactory.getLogger(InitService.class);
 	
 	@EJB private UsuarioService usuarioService;
@@ -43,18 +44,19 @@ public class InitService {
 	@PostConstruct
 	public void init() {
 		final int N_USUARIOS = 0;
-		final int N_LIVROS = 10000;
+		final int N_LIVROS = 500000;
 		
 		for (int i = 0; i < N_USUARIOS; i++) {
 			Usuario u = UsuarioFabrica.criar();
-			//LOG.info(u.toString());
 			usuarioService.persistir(u);
 		}
 		
 		for (int i = 0; i < N_LIVROS; i++) {
 			Livro lv = LivroFabrica.criar();
-			//LOG.info(lv.toString());
 			livroService.persistir(lv);
+			if (i % 1000 == 0) {
+				LOG.info("" + (double)i/N_LIVROS*100);
+			}
 		}
 	}
 }

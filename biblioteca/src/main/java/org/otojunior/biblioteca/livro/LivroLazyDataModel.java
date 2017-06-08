@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
  */
 public class LivroLazyDataModel extends LazyDataModel<Livro> {
 	private static final long serialVersionUID = -4840481768183892892L;
+	
+	@SuppressWarnings("unused")
 	private static final Logger LOG = LoggerFactory.getLogger(LivroLazyDataModel.class); 
 
 	/*
