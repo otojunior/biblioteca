@@ -4,19 +4,14 @@
 package org.otojunior.biblioteca.livro;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import org.otojunior.biblioteca.entidade.livro.Livro;
 import org.otojunior.biblioteca.service.livro.LivroService;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.ToggleSelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +31,7 @@ public class LivroView {
 	// Listagem
 	private List<Livro> livros;
 	private List<Livro> selecionados;
-	private boolean todosSelecionados = false;
+	//private boolean todosSelecionados = false;
 	
 	private LivroLazyDataModel livroLazyDataModel;
 	
@@ -68,8 +63,8 @@ public class LivroView {
 		 */
 		Livro livroA = new Livro();
 		Livro livroB = new Livro();
-		livroA.setId(livros.get(2).getId());
-		livroB.setId(livros.get(3).getId());
+		livroA.setId(55L);
+		livroB.setId(56L);
 		selecionados.add(livroA);
 		selecionados.add(livroB);
 		
@@ -78,8 +73,23 @@ public class LivroView {
 	
 	/**
 	 * 
-	 * @param event
+	 * @return
 	 */
+	public String selecionarTodos() {
+		selecionados = new ArrayList<>(service.pesquisarIds(nome, editora));
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String limparTodos() {
+		selecionados.clear();
+		return null;
+	}
+	
+	/*
 	public void onToggleSelect(ToggleSelectEvent event) {
 		if (todosSelecionados) {
 			selecionados = Collections.emptyList();
@@ -99,6 +109,7 @@ public class LivroView {
 		LOG.info("Source.class: " + event.getSource().getClass().getName());
 		LOG.info("Source.toString: " + event.getSource().toString());
 	}
+	*/
 	
 	/**
 	 * @return the nome

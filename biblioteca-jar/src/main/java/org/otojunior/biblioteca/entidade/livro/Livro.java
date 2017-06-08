@@ -24,6 +24,12 @@ import org.otojunior.biblioteca.entidade.EntidadeBase;
 public class Livro extends EntidadeBase {
 	private static final long serialVersionUID = -1584199678720540839L;
 	
+	public Livro() { }
+	
+	public Livro(Long id) {
+		setId(id);
+	}
+	
 	/**
 	 * 
 	 */

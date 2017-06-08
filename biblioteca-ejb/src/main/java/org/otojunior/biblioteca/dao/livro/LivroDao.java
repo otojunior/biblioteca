@@ -60,6 +60,26 @@ public class LivroDao extends DaoBase<Livro> {
 	
 	/**
 	 * 
+	 * @param editora
+	 * @return
+	 */
+	public List<Livro> pesquisarIds(String nome, String editora) {
+		TypedQuery<Livro> query = getEntityManager().createQuery(
+			jpqlids(nome, editora), 
+			Livro.class);
+		
+		if (StringUtils.isNotBlank(nome)) {
+			query.setParameter("_nome", nome);
+		}
+		if (StringUtils.isNotBlank(editora)) {
+			query.setParameter("_editora", editora);
+		}
+		
+		return query.getResultList();
+	}
+	
+	/**
+	 * 
 	 * @param nome
 	 * @param editora
 	 * @param offset
@@ -121,6 +141,30 @@ public class LivroDao extends DaoBase<Livro> {
 	 */
 	private String jpqlcount(String nome, String editora) {
 		String jpql = "select count(lv) from Livro lv where";
+		
+		boolean algumaClausula = false;
+		if (StringUtils.isNotBlank(nome)) {
+			jpql += " and lv.nome = :_nome";
+			algumaClausula = true;
+		}
+		if (StringUtils.isNotBlank(editora)) {
+			jpql += " and lv.editora = :_editora";
+			algumaClausula = true;
+		}
+		
+		jpql = (algumaClausula) ? 
+			jpql.replace(" where and", " where") : 
+			jpql.replace(" where", "");
+		
+		return jpql;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private String jpqlids(String nome, String editora) {
+		String jpql = "select new org.otojunior.biblioteca.entidade.livro.Livro(lv.id) from Livro lv where";
 		
 		boolean algumaClausula = false;
 		if (StringUtils.isNotBlank(nome)) {

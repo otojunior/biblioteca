@@ -3,7 +3,6 @@
  */
 package org.otojunior.biblioteca.service.livro;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,7 +12,6 @@ import javax.ejb.TransactionAttributeType;
 
 import org.otojunior.biblioteca.dao.livro.LivroDao;
 import org.otojunior.biblioteca.entidade.livro.Livro;
-import org.otojunior.biblioteca.entidade.mock.LivroFabrica;
 import org.otojunior.biblioteca.service.ServiceBase;
 
 /**
@@ -49,6 +47,15 @@ public class LivroService extends ServiceBase {
 	 * @return
 	 */
 	public List<Livro> pesquisar(String nome, String editora) {
+		return dao.pesquisar(nome, editora);
+	}
+	
+	/**
+	 * 
+	 * @param editora
+	 * @return
+	 */
+	public List<Livro> pesquisarIds(String nome, String editora) {
 		return dao.pesquisar(nome, editora);
 	}
 

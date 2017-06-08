@@ -38,7 +38,6 @@
 								lazy="true"
 								paginator="true" 
 								paginatorPosition="bottom"
-								paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
 								rowKey="#{i.id}" 
 								rows="10" 
 								rowSelectMode="checkbox"
@@ -46,8 +45,12 @@
 								style="margin-bottom:0" 
 								widgetVar="dataTableChecks"
 								value="#{livroView.livroLazyDataModel}"	
-								var="i" 
-								>
+								var="i">
+						
+						<f:facet name="header">
+							<p:commandButton value="Selecionar Todos" action="#{livroView.selecionarTodos}" update="idDataTableLivroListagem"/>
+							<p:commandButton value="Limpar Todos" action="#{livroView.limparTodos}" update="idDataTableLivroListagem"/>
+						</f:facet>
 						
 						<!-- 
 						<p:ajax event="rowSelectCheckbox" listener="#{livroView.onRowSelectCheckbox}" update="idDataTableLivroListagem"/>
