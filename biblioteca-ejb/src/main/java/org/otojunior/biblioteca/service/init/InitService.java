@@ -44,7 +44,7 @@ public class InitService {
 	@PostConstruct
 	public void init() {
 		final int N_USUARIOS = 0;
-		final int N_LIVROS = 100000;
+		final int N_LIVROS = 10000;
 		
 		for (int i = 0; i < N_USUARIOS; i++) {
 			Usuario u = UsuarioFabrica.criar();
@@ -54,7 +54,7 @@ public class InitService {
 		for (int i = 0; i < N_LIVROS; i++) {
 			Livro lv = LivroFabrica.criar();
 			livroService.persistir(lv);
-			if (i % 5000 == 0) {
+			if (i % 1000 == 0) {
 				LOG.info("Carregando registros... " + ((double)i/N_LIVROS*100) + "% concluído");
 			}
 		}
