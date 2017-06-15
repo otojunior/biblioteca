@@ -235,7 +235,7 @@ LEFT JOIN
 CROSS apply dbo.retornaRepasseConcatenato(procedimento.id) AS concatenado 
 CROSS apply dbo.retornaMotivoGlosa(procedimento.id) AS motivoGlosaConcatenado 
 CROSS apply retornaFaturaConcatenado(procedimento.id) faturaConcatenado
-WHERE entidadeConvenio.fk_entidade = 2
+WHERE entidadeConvenio.fk_entidade = 16
     AND obj.registro_ativo = 1
     AND obj.autorizado_unimed = 1
     AND obj.situacaoatendimento <> 6
