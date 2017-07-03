@@ -116,9 +116,9 @@
 			<build>
 				<plugins>
 					<plugin>
-		                <groupId>org.jboss.as.plugins</groupId>
-		                <artifactId>jboss-as-maven-plugin</artifactId>
-		                <version>${plugin.version.jboss-as-maven-plugin}</version>
+		                <groupId>org.wildfly.plugins</groupId>
+					    <artifactId>wildfly-maven-plugin</artifactId>
+					    <version>${plugin.version.wildfly-maven-plugin}</version>
 		                <executions>
 		                    <execution>
 		                        <phase>deploy</phase>

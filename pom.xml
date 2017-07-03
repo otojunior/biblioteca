@@ -53,7 +53,7 @@
 		<plugin.version.maven-war-plugin>3.1.0</plugin.version.maven-war-plugin>
 		<plugin.version.maven-ear-plugin>2.10.1</plugin.version.maven-ear-plugin>
 		<plugin.version.maven-embedded-glassfish-plugin>4.1.1</plugin.version.maven-embedded-glassfish-plugin>
-		<plugin.version.jboss-as-maven-plugin>7.8.Final</plugin.version.jboss-as-maven-plugin>
+		<plugin.version.wildfly-maven-plugin>1.2.0.Alpha6</plugin.version.wildfly-maven-plugin>
 		
 		<config.version.ejbversion>3.2</config.version.ejbversion>
 		<config.maven-embedded-glassfish-plugin.port>8080</config.maven-embedded-glassfish-plugin.port>
